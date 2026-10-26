@@ -48,7 +48,7 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         .dropdown {
             position: relative;
@@ -90,9 +90,9 @@
     <!-- Starry Background -->
     <div id="stars" class="stars-container"></div>
 
-    <!-- 배경음악 오디오 엘리먼트 (music 폴더의 music.mp3 연결) -->
+    <!-- 배경음악 오디오 엘리먼트 -->
     <audio id="bgm-audio" loop preload="auto">
-        <source src="../music/music.mp3" type="audio/mpeg">
+        <source src="music/music.mp3" type="audio/mpeg">
     </audio>
 
     <!-- 좌측 미니 타로 미리보기 위젯 -->
@@ -154,11 +154,11 @@
                 </button>
                 <div id="dropdown-menu" class="dropdown-content">
                     <a href="index.html" class="text-gold-300 font-bold bg-mystic-700/50"><i class="fa-solid fa-house mr-1.5"></i> 홈으로</a>
-                    <a href="login.html"><i class="fa-solid fa-right-to-bracket mr-1.5"></i> 로그인</a>
-                    <a href="signup.html"><i class="fa-solid fa-user-plus mr-1.5"></i> 회원가입</a>
-                    <a href="map.html"><i class="fa-solid fa-map-location-dot mr-1.5"></i> 오시는 길 (지도)</a>
-                    <a href="SNS.html"><i class="fa-solid fa-share-nodes mr-1.5"></i> SNS 경로</a>
-                    <a href="talk.html"><i class="fa-solid fa-comments mr-1.5"></i> 소통 게시판</a>
+                    <a href="html/login.html"><i class="fa-solid fa-right-to-bracket mr-1.5"></i> 로그인</a>
+                    <a href="html/signup.html"><i class="fa-solid fa-user-plus mr-1.5"></i> 회원가입</a>
+                    <a href="html/map.html"><i class="fa-solid fa-map-location-dot mr-1.5"></i> 오시는 길 (지도)</a>
+                    <a href="html/SNS.html"><i class="fa-solid fa-share-nodes mr-1.5"></i> SNS 경로</a>
+                    <a href="html/talk.html"><i class="fa-solid fa-comments mr-1.5"></i> 소통 게시판</a>
                 </div>
             </div>
 
@@ -363,7 +363,7 @@
                 `;
             } else if (authArea) {
                 authArea.innerHTML = `
-                    <a href="login.html" class="px-3 py-1.5 rounded-full bg-mystic-800/80 border border-gold-500/30 hover:border-gold-400 text-gold-300 text-xs transition cursor-pointer">
+                    <a href="html/login.html" class="px-3 py-1.5 rounded-full bg-mystic-800/80 border border-gold-500/30 hover:border-gold-400 text-gold-300 text-xs transition cursor-pointer">
                         로그인
                     </a>
                 `;
@@ -377,6 +377,6 @@
             }
         }
     </script>
-    <script src="../js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
