@@ -154,8 +154,8 @@
                 </button>
                 <div id="dropdown-menu" class="dropdown-content">
                     <a href="index.html" class="text-gold-300 font-bold bg-mystic-700/50"><i class="fa-solid fa-house mr-1.5"></i> 홈으로</a>
-                    <a href="html/login.html"><i class="fa-solid fa-right-to-bracket mr-1.5"></i> 로그인</a>
-                    <a href="html/signup.html"><i class="fa-solid fa-user-plus mr-1.5"></i> 회원가입</a>
+                    <a href="html/login.html" id="menu-login"><i class="fa-solid fa-right-to-bracket mr-1.5"></i> 로그인</a>
+                    <a href="html/signup.html" id="menu-signup"><i class="fa-solid fa-user-plus mr-1.5"></i> 회원가입</a>
                     <a href="html/map.html"><i class="fa-solid fa-map-location-dot mr-1.5"></i> 오시는 길 (지도)</a>
                     <a href="html/SNS.html"><i class="fa-solid fa-share-nodes mr-1.5"></i> SNS 경로</a>
                     <a href="html/talk.html"><i class="fa-solid fa-comments mr-1.5"></i> 소통 게시판</a>
@@ -350,23 +350,33 @@
 
         function checkAuthStatus() {
             const authArea = document.getElementById('user-auth-area');
+            const menuLogin = document.getElementById('menu-login');
+            const menuSignup = document.getElementById('menu-signup');
             const loggedInUser = JSON.parse(localStorage.getItem('tarot_logged_in'));
 
-            if (loggedInUser && authArea) {
-                authArea.innerHTML = `
-                    <span class="text-xs text-gold-300 font-batang flex items-center gap-1">
-                        <i class="fa-solid fa-circle-user text-gold-400"></i> ${loggedInUser.name}님
-                    </span>
-                    <button onclick="handleLogout()" class="px-2.5 py-1 rounded-full bg-mystic-800 border border-mystic-600 hover:border-red-400 text-slate-300 text-[11px] transition cursor-pointer">
-                        로그아웃
-                    </button>
-                `;
-            } else if (authArea) {
-                authArea.innerHTML = `
-                    <a href="html/login.html" class="px-3 py-1.5 rounded-full bg-mystic-800/80 border border-gold-500/30 hover:border-gold-400 text-gold-300 text-xs transition cursor-pointer">
-                        로그인
-                    </a>
-                `;
+            if (loggedInUser) {
+                if (authArea) {
+                    authArea.innerHTML = `
+                        <span class="text-xs text-gold-300 font-batang flex items-center gap-1">
+                            <i class="fa-solid fa-circle-user text-gold-400"></i> ${loggedInUser.name}님
+                        </span>
+                        <button onclick="handleLogout()" class="px-2.5 py-1 rounded-full bg-mystic-800 border border-mystic-600 hover:border-red-400 text-slate-300 text-[11px] transition cursor-pointer">
+                            로그아웃
+                        </button>
+                    `;
+                }
+                if (menuLogin) menuLogin.style.display = 'none';
+                if (menuSignup) menuSignup.style.display = 'none';
+            } else {
+                if (authArea) {
+                    authArea.innerHTML = `
+                        <a href="html/login.html" class="px-3 py-1.5 rounded-full bg-mystic-800/80 border border-gold-500/30 hover:border-gold-400 text-gold-300 text-xs transition cursor-pointer">
+                            로그인
+                        </a>
+                    `;
+                }
+                if (menuLogin) menuLogin.style.display = 'block';
+                if (menuSignup) menuSignup.style.display = 'block';
             }
         }
 
