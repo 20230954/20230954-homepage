@@ -593,6 +593,7 @@ function playMagicChimeSFX() {
 window.addEventListener('DOMContentLoaded', () => {
     initStars();
     initSidePreviews();
+    checkAuthStatus(); // 페이지 로드 시 인증 상태 체크 추가
 });
 
 function initStars() {
@@ -641,6 +642,53 @@ function setupPreviewCard(containerId, contentId, defaultHTML) {
     container.addEventListener('mouseleave', () => {
         content.innerHTML = defaultHTML;
     });
+}
+
+
+/* ==================== AUTHENTICATION STATUS ==================== */
+function checkAuthStatus() {
+    const authArea = document.getElementById('user-auth-area');
+    const menuLogin = document.getElementById('menu-login');
+    const menuSignup = document.getElementById('menu-signup');
+    const loggedInUser = JSON.parse(localStorage.getItem('tarot_logged_in'));
+
+    if (loggedInUser) {
+        // 1. 우측 상단 유저 이름 및 로그아웃 버튼 표시
+        if (authArea) {
+            authArea.innerHTML = `
+                <span class="text-xs text-gold-300 font-batang flex items-center gap-1">
+                    <i class="fa-solid fa-circle-user text-gold-400"></i> ${loggedInUser.name}님
+                </span>
+                <button onclick="handleLogout()" class="px-2.5 py-1 rounded-full bg-mystic-800 border border-mystic-600 hover:border-red-400 text-slate-300 text-[11px] transition cursor-pointer">
+                    로그아웃
+                </button>
+            `;
+        }
+        // 2. 드롭다운 메뉴의 로그인/회원가입 숨기기
+        if (menuLogin) menuLogin.style.display = 'none';
+        if (menuSignup) menuSignup.style.display = 'none';
+
+    } else {
+        // 비로그인 상태
+        if (authArea) {
+            authArea.innerHTML = `
+                <a href="login.html" class="px-3 py-1.5 rounded-full bg-mystic-800/80 border border-gold-500/30 hover:border-gold-400 text-gold-300 text-xs transition cursor-pointer">
+                    로그인
+                </a>
+            `;
+        }
+        // 드롭다운 메뉴의 로그인/회원가입 다시 표시
+        if (menuLogin) menuLogin.style.display = 'block';
+        if (menuSignup) menuSignup.style.display = 'block';
+    }
+}
+
+function handleLogout() {
+    if (confirm("로그아웃 하시겠습니까?")) {
+        localStorage.removeItem('tarot_logged_in');
+        checkAuthStatus();
+        window.location.reload();
+    }
 }
 
 
